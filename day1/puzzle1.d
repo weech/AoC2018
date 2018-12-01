@@ -7,7 +7,7 @@ import std.conv;
 */
 void main()
 {
-	// Read in the file and store in list of ints
+	// Read in the file and keep track of current value
 	auto file = File("input.txt", "r");
 	int currentvalue;
 	while (!file.eof) {
