@@ -17,4 +17,6 @@ docs/
 *.obj
 *.lst
 *.txt
+*.vscode
+*.mypy_cache
 
