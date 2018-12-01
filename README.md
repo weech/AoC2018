@@ -1,0 +1,1 @@
+My solutions to Advent of Code 2018. Hopefully putting it in public will inspire me to keep up with it.
