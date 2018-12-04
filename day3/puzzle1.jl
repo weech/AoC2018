@@ -16,10 +16,10 @@ function main()
     claims = open("input.txt", "r") do file 
         claims = Array{Claim, 1}()
         for line in eachline(file)
-            id = parse(Int, split(line, "@")[1][2:end]);
-            offsets = parse.(Int, split(split(split(line, "@")[2], ":")[1], ","));
-            size = parse.(Int, split(split(line, ":")[2], "x"));
-            push!(claims, Claim(id, offsets[1], offsets[2], size[1], size[2]));
+            id = parse(Int, split(line, "@")[1][2:end])
+            offsets = parse.(Int, split(split(split(line, "@")[2], ":")[1], ","))
+            size = parse.(Int, split(split(line, ":")[2], "x"))
+            push!(claims, Claim(id, offsets[1], offsets[2], size[1], size[2]))
         end 
         claims 
     end

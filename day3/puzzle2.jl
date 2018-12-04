@@ -32,32 +32,32 @@ function findnooverlap(claims, fabric)
     return -1::Int 
 end
 
+function parseclaim!(line, fabric)
+    id = parse(Int, split(line, "@")[1][2:end])
+    lo, to = parse.(Int, split(split(split(line, "@")[2], ":")[1], ","))
+    w, h = parse.(Int, split(split(line, ":")[2], "x"))
+    for i in lo+1:lo+w
+        for j in to+1:to+h
+            fabric[i, j] += 1
+        end
+    end
+    return Claim(id, lo, to, w, h)
+end
+
 function main() 
 
     # Process the claims
+    fabric = zeros(Int, edge, edge)
     claims = open("input.txt", "r") do file 
         claims = Array{Claim, 1}()
         for line in eachline(file)
-            id = parse(Int, split(line, "@")[1][2:end]);
-            offsets = parse.(Int, split(split(split(line, "@")[2], ":")[1], ","));
-            size = parse.(Int, split(split(line, ":")[2], "x"));
-            push!(claims, Claim(id, offsets[1], offsets[2], size[1], size[2]));
+            push!(claims, parseclaim!(line, fabric))
         end 
         claims 
-    end
-
-    # Create a fabric 2d array and increment the count for each time an element is claimed
-    fabric = zeros(Int, edge, edge)
-    for claim in claims
-        for i in claim.leftoffset+1:claim.leftoffset+claim.width
-            for j in claim.topoffset+1:claim.topoffset+claim.height
-                fabric[i, j] += 1
-            end
-        end
     end
 
     println(findnooverlap(claims, fabric))
 
 end
 
-main()
+@time main()
