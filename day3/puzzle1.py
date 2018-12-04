@@ -4,7 +4,7 @@ import numpy as np
 def main():
     
     edge = 1000
-    fabric = np.zeros((1000, 1000), int)
+    fabric = np.zeros((edge, edge), int)
     with open("input.txt") as f:
         for line in f:
             #claim_id = int(line.split("@")[0][1:]) Not used
