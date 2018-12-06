@@ -60,4 +60,4 @@ function main()
 
 end
 
-@time main()
+main()
