@@ -15,7 +15,6 @@ int distance(Point a, Point b) @nogc nothrow pure @safe {
     return abs(a.x - b.x) + abs(a.y - b.y);
 }
 
-
 int puzzle1(Point[] points, int labels) {
 
     // Figure out how big my grid needs to be 
@@ -81,29 +80,6 @@ int puzzle1(Point[] points, int labels) {
     return maxcount;
 }
 
-/*
-int[][] labelGrid(int[][] data, int maxy, int maxx) {
-    int[][] linked;
-    int[][] labels = new int[][](maxy, maxx);
-    
-    // First pass 
-    foreach (j; 0..maxy) { foreach (i; 0..maxx) {
-        int currval = data[j][i];
-        if (currval != 0) {
-            if (i > 0 && data[j][i-1] == currval) {
-                labels[j][i] = labels[j][i-1];
-            }
-            if (i > 0 && j > 0 && data[j-1][i] == currval && data[j][i-1] == currval
-                && labels[j-1][i] != labels[j][i-1]) {
-                immutable minpix = min(labels[j-1][i], labels[j][i-1]);
-                labels[j][i] = minpix;
-                linked ~= [labels[j-1][i], labels[j][i-1]];
-            }
-            // https://en.wikipedia.org/wiki/Connected-component_labeling
-        }
-    }}
-}
-*/
 int puzzle2(Point[] points) {
 
     // Figure out how big my grid needs to be 
