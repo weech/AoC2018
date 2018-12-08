@@ -5,14 +5,12 @@ import std.algorithm;
 import std.array;
 
 class Node {
-    int numchildren;
-    int nummeta;
     Node[] children;
     int[] meta;
 
     this(int[] line, out int numUsed) {
-        this.numchildren = line[0];
-        this.nummeta = line[1];
+        numchildren = line[0];
+        nummeta = line[1];
         int startidx = 2;
         foreach (child; 0..numchildren) {
             int numUsedLocal;
@@ -28,7 +26,7 @@ class Node {
 
 int puzzle1(Node root) {
     // Traverse root to get sum of metadata entries
-    if (root.numchildren == 0) {
+    if (root.children.length == 0) {
         return root.meta.sum;
     }
     else {
@@ -37,11 +35,13 @@ int puzzle1(Node root) {
 }
 
 int puzzle2(Node root) {
-    if (root.numchildren == 0) {
+    if (root.children.length == 0) {
         return root.meta.sum;
     }
     else {
-        return root.meta.filter!(m => m <= root.numchildren && m > 0).map!(m => root.children[m-1].puzzle2).sum;
+        return root.meta.filter!(m => m <= root.children.length && m > 0)
+                        .map!(m => root.children[m-1].puzzle2)
+                        .sum;
     }
 }
 
