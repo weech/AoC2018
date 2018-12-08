@@ -1,4 +1,3 @@
-
 struct Node 
     children::Array{Node, 1}
     meta::Array{Int, 1}
@@ -43,10 +42,7 @@ function main()
         line = parse.(Int, split(strip(readline(file)), " "))
     end
 
-    root, used = Node(line)
-    if used != length(line)
-        println(used, " ", length(line))
-    end
+    root, _ = Node(line)
 
     println(puzzle1(root))
     println(puzzle2(root))
